@@ -1,0 +1,15 @@
+pdo
+mysql
+redis
+gd
+mbstring
+sockets
+openssl
+gmp
+ldap
+crypt
+simplexml
+json
+gettext
+filter
+pcntl

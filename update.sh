@@ -15,8 +15,8 @@ add_extension () {
             build_deps+="postgresql-dev "
             run_deps+="postgresql-libs "
             ;;
-        xml)
-            php_extensions+="xml "
+        xml|simplexml)
+            php_extensions+="$1 "
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "
             ;;
@@ -25,18 +25,34 @@ add_extension () {
             build_deps+="icu-dev "
             run_deps+="libintl icu-libs "
             ;;
+        gettext)
+            php_extensions+="gettext "
+            build_deps+="gettext-dev "
+            run_deps+="gettext-libs "
+            ;;
+        gmp)
+            php_extensions+="gmp "
+            build_deps+="gmp-dev "
+            run_deps+="gmp "
+            ;;
+        ldap)
+            php_extensions+="ldap "
+            build_deps+="openldap-dev "
+            run_deps+="libldap "
+            ;;
+
         gd)
             php_extensions+="gd "
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
-        opcache|zip)
+        opcache|zip|sockets|pcntl)
             php_extensions+="$1 "
             ;;
         redis)
             pecl_extensions+="$1 "
             ;;
-        curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype) # already included in php-alpine
+        curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter) # already included in php-alpine
             ;;
         *)
             echo "Unknown extension $1"
@@ -51,7 +67,7 @@ php_versions=(["7.0"]="7.0-fpm-alpine"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-for framework in "symfony3" "laravel5" "shopware5"
+for framework in $(cat frameworks)
 do
     pecl_extensions=""
     php_extensions=""
