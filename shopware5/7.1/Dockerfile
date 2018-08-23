@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.1-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash icu-libs libgd libintl mariadb-client-libs postgresql-libs"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-dev postgresql-dev zlib-dev"
