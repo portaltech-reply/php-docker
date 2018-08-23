@@ -5,6 +5,7 @@ pdo
 mysql
 redis
 gd
+zip
 mbstring
 ctype
 tokenizer
