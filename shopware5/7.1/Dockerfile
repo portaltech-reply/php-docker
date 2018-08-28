@@ -11,7 +11,7 @@ RUN    apk update \
     && docker-php-ext-install $PHP_EXTS \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
-    && wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --install-dir=/usr/local/bin/ --quiet \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
+COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
