@@ -15,7 +15,7 @@ add_extension () {
             build_deps+="postgresql-dev "
             run_deps+="postgresql-libs "
             ;;
-        xml|simplexml)
+        xml|simplexml|soap)
             php_extensions+="$1 "
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "

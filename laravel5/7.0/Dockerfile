@@ -1,9 +1,9 @@
-FROM php:7.2-fpm-alpine3.7
+FROM php:7.0-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs libintl mariadb-client-libs postgresql-libs"
-ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-dev postgresql-dev"
+ENV RUN_DEPS="bash git libgd libldap libxml2 mariadb-client-libs"
+ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev openldap-dev zlib-dev"
 ENV PECL_EXTS="redis"
-ENV PHP_EXTS="intl mysqli opcache pdo_mysql pdo_pgsql"
+ENV PHP_EXTS="gd ldap mysqli pdo_mysql xml zip"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
