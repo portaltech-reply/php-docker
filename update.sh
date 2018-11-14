@@ -72,7 +72,7 @@ do
     pecl_extensions=""
     php_extensions=""
     build_deps=""
-    run_deps="bash git openssh "
+    run_deps="bash git openssh-client "
     for ext in $(cat ${DIR}/${framework}/deps)
     do
         add_extension $ext
