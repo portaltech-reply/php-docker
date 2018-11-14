@@ -1,6 +1,6 @@
 FROM php:7.2-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash icu-libs libintl mariadb-client-libs postgresql-libs"
+ENV RUN_DEPS="bash git icu-libs libintl mariadb-client-libs postgresql-libs"
 ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-dev postgresql-dev"
 ENV PECL_EXTS="redis"
 ENV PHP_EXTS="intl mysqli opcache pdo_mysql pdo_pgsql"
