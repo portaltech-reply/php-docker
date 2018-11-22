@@ -3,6 +3,7 @@ RUN    apk update \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && docker-php-ext-install $PHP_EXTS \
+    && docker-php-ext-enable --ini-name 05-opcache.ini opcache \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
     && pecl clear-cache \

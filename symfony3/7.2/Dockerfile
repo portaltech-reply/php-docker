@@ -3,12 +3,13 @@ MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash git icu-libs libintl mariadb-client-libs openssh-client postgresql-libs"
 ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-dev postgresql-dev"
 ENV PECL_EXTS="redis"
-ENV PHP_EXTS="intl mysqli opcache pdo_mysql pdo_pgsql"
+ENV PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && docker-php-ext-install $PHP_EXTS \
+    && docker-php-ext-enable --ini-name 05-opcache.ini opcache \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
     && pecl clear-cache \

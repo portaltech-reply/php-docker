@@ -46,13 +46,15 @@ add_extension () {
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
-        opcache|zip|sockets|pcntl)
+        zip|sockets|pcntl)
             php_extensions+="$1 "
             ;;
-        redis)
+        redis|apcu)
             pecl_extensions+="$1 "
             ;;
         curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter) # already included in php-alpine
+            ;;
+        opcache) # in Dockerfile.base
             ;;
         *)
             echo "Unknown extension $1"
