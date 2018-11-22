@@ -11,6 +11,7 @@ RUN    apk update \
     && docker-php-ext-install $PHP_EXTS \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
+    && pecl clear-cache \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
