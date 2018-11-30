@@ -40,7 +40,11 @@ add_extension () {
             build_deps+="openldap-dev "
             run_deps+="libldap "
             ;;
-
+        imagick)
+            pecl_extensions+="imagick "
+            run_deps+="imagemagick imagemagick-libs "
+            build_deps+="imagemagick-dev "
+            ;;
         gd)
             php_extensions+="gd "
             run_deps+="libgd "

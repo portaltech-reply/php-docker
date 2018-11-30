@@ -1,0 +1,8 @@
+intl
+opcache
+mysql
+apcu
+redis
+curl
+gd
+imagick
