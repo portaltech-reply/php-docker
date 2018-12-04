@@ -1,6 +1,6 @@
 FROM php:7.1-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs imagemagick imagemagick-libs libgd libintl mariadb-client-libs openssh-client"
+ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libpng libwebp libxpm mariadb-client-libs openssh-client zlib"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-dev zlib-dev"
 ENV PECL_EXTS="apcu imagick redis"
 ENV PHP_EXTS="gd intl mysqli pdo_mysql zip"

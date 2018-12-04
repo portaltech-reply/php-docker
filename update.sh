@@ -47,7 +47,7 @@ add_extension () {
             ;;
         gd)
             php_extensions+="gd "
-            run_deps+="libgd "
+            run_deps+="libgd freetype libwebp libpng zlib libxpm libjpeg-turbo "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
         zip)
