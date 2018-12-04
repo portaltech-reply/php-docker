@@ -15,7 +15,7 @@ RUN    apk update \
     && docker-php-ext-enable $PECL_EXTS \
     && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
     && mkdir /usr/local/etc/php/conf-override.d/ \
-    && sed -i -e 's|exec "$@"|cp /usr/local/etc/php/conf-override.d/* /usr/local/etc/php/conf.d/\n\nexec "$@"|' /usr/local/bin/docker-php-entrypoint \
+    && sed -i -e 's!exec "$@"!cp -rT /usr/local/etc/php/conf-override.d/ /usr/local/etc/php/conf.d/ || true \n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
     && pecl clear-cache \
     && apk del .build-deps \
     # Clear
