@@ -50,7 +50,11 @@ add_extension () {
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
-        zip|sockets|pcntl)
+        zip)
+            php_extensions+="zip "
+            build_deps+="zlib-dev "
+            ;;
+        sockets|pcntl)
             php_extensions+="$1 "
             ;;
         redis|apcu)
