@@ -1,9 +1,9 @@
-FROM php:7.1-fpm-alpine3.7
+FROM php:7.1-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libpng libwebp libxpm mariadb-client-libs openssh-client zlib"
-ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-dev zlib-dev"
+ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmcrypt libpng libwebp libxml2 libxpm mariadb-client-libs openssh-client zlib"
+ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev zlib-dev"
 ENV PECL_EXTS="apcu imagick redis"
-ENV PHP_EXTS="gd intl mysqli pdo_mysql zip"
+ENV PHP_EXTS="bcmath exif gd intl mcrypt mysqli pdo_mysql soap zip"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
@@ -17,4 +17,4 @@ RUN    apk update \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer

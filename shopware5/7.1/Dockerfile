@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-alpine3.7
+FROM php:7.1-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm mariadb-client-libs openssh-client postgresql-libs zlib"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev postgresql-dev zlib-dev"
@@ -17,4 +17,4 @@ RUN    apk update \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer

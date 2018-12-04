@@ -7,3 +7,7 @@ curl
 gd
 imagick
 zip
+bcmath
+mcrypt
+soap
+exif

@@ -54,7 +54,12 @@ add_extension () {
             php_extensions+="zip "
             build_deps+="zlib-dev "
             ;;
-        sockets|pcntl)
+        mcrypt)
+            php_extensions+="mcrypt "
+            run_deps+="libmcrypt "
+            build_deps+="libmcrypt-dev "
+            ;;
+        sockets|pcntl|bcmath|soap|exif)
             php_extensions+="$1 "
             ;;
         redis|apcu)
@@ -72,8 +77,8 @@ add_extension () {
 
 declare -A php_versions
 php_versions=(["7.0"]="7.0-fpm-alpine3.7"
-              ["7.1"]="7.1-fpm-alpine3.7"
-              ["7.2"]="7.2-fpm-alpine3.7")
+              ["7.1"]="7.1-fpm-alpine3.8"
+              ["7.2"]="7.2-fpm-alpine3.8")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
