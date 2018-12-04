@@ -3,7 +3,7 @@ MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash git icu-libs imagemagick imagemagick-libs libgd libintl mariadb-client-libs openssh-client"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-dev zlib-dev"
 ENV PECL_EXTS="apcu imagick redis"
-ENV PHP_EXTS="gd intl mysqli pdo_mysql"
+ENV PHP_EXTS="gd intl mysqli pdo_mysql zip"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
