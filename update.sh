@@ -6,8 +6,8 @@ add_extension () {
         mysql)
             add_extension pdo
             php_extensions+="mysqli pdo_mysql "
-            build_deps+="mariadb-dev "
-            run_deps+="mariadb-client-libs "
+            build_deps+="mariadb-connector-c-dev "
+            run_deps+="mariadb-connector-c "
             ;;
         pgsql|postgres)
             add_extension pdo

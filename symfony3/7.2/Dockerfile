@@ -1,7 +1,7 @@
 FROM php:7.2-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs libintl mariadb-client-libs openssh-client postgresql-libs"
-ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-dev postgresql-dev"
+ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs"
+ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev"
 ENV PECL_EXTS="redis"
 ENV PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql"
 RUN    apk update \

@@ -1,7 +1,7 @@
 FROM php:7.0-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm mariadb-client-libs openssh-client postgresql-libs zlib"
-ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev postgresql-dev zlib-dev"
+ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm mariadb-connector-c openssh-client postgresql-libs zlib"
+ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-connector-c-dev postgresql-dev zlib-dev"
 ENV PECL_EXTS="redis"
 ENV PHP_EXTS="gd intl mysqli pdo_mysql pdo_pgsql soap zip"
 RUN    apk update \
