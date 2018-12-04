@@ -76,9 +76,9 @@ add_extension () {
 }
 
 declare -A php_versions
-php_versions=(["7.0"]="7.0-fpm-alpine3.7"
-              ["7.1"]="7.1-fpm-alpine3.8"
-              ["7.2"]="7.2-fpm-alpine3.8")
+php_versions=(["7.1"]="7.1-fpm-alpine3.8"
+              ["7.2"]="7.2-fpm-alpine3.8"
+              ["7.3"]="7.3-fpm-alpine3.8")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
