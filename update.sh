@@ -42,7 +42,7 @@ add_extension () {
             ;;
         imagick)
             pecl_extensions+="imagick "
-            run_deps+="imagemagick imagemagick-libs "
+            run_deps+="imagemagick imagemagick-libs libmagic "
             build_deps+="imagemagick-dev "
             ;;
         gd)
@@ -111,6 +111,10 @@ do
         echo "ENV PECL_EXTS=\"${pecl_extensions}\"" >> $file
         echo "ENV PHP_EXTS=\"${php_extensions}\"" >> $file
         cat $DIR/Dockerfile.base >> $file
+        cat > ${subdir}docker-php-update-conf <<EOS
+#!/bin/sh
+cp -rT /usr/local/etc/php/conf-override.d/ /usr/local/etc/php/conf.d/ 
+EOS
     done
 done
 

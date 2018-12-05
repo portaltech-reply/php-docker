@@ -1,9 +1,11 @@
 FROM php:7.1-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmcrypt libpng libwebp libxml2 libxpm mariadb-connector-c openssh-client zlib"
+ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libmcrypt libpng libwebp libxml2 libxpm mariadb-connector-c openssh-client zlib"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-connector-c-dev zlib-dev"
 ENV PECL_EXTS="apcu imagick redis"
 ENV PHP_EXTS="bcmath exif gd intl mcrypt mysqli pdo_mysql soap zip"
+ADD docker-php-update-conf /usr/local/bin/
+
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
@@ -14,10 +16,12 @@ RUN    apk update \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
     && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && chmod +x /usr/local/bin/docker-php-update-conf \
     && mkdir /usr/local/etc/php/conf-override.d/ \
-    && sed -i -e 's!exec "$@"!cp -rT /usr/local/etc/php/conf-override.d/ /usr/local/etc/php/conf.d/ || true \n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
+    && sed -i -e 's!exec "$@"!inotifyd docker-php-update-conf /usr/local/etc/php/conf-override.d/:cewDMymnd \&\nsleep 1\ndocker-php-update-conf\n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
     && pecl clear-cache \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
+
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer

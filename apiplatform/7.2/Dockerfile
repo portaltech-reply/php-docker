@@ -4,6 +4,8 @@ ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client"
 ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev zlib-dev"
 ENV PECL_EXTS="apcu redis"
 ENV PHP_EXTS="intl mysqli pdo_mysql zip"
+ADD docker-php-update-conf /usr/local/bin/
+
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
@@ -14,10 +16,12 @@ RUN    apk update \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
     && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && chmod +x /usr/local/bin/docker-php-update-conf \
     && mkdir /usr/local/etc/php/conf-override.d/ \
-    && sed -i -e 's!exec "$@"!cp -rT /usr/local/etc/php/conf-override.d/ /usr/local/etc/php/conf.d/ || true \n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
+    && sed -i -e 's!exec "$@"!inotifyd docker-php-update-conf /usr/local/etc/php/conf-override.d/:cewDMymnd \&\nsleep 1\ndocker-php-update-conf\n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
     && pecl clear-cache \
     && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
+
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
