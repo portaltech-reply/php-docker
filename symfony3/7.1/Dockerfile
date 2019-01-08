@@ -1,15 +1,24 @@
 FROM php:7.1-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs"
-ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev"
-ENV PECL_EXTS="redis"
-ENV PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql"
+ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs" \
+    BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev" \
+    PECL_EXTS="redis" \
+    PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql"
 ADD docker-php-update-conf /usr/local/bin/
+ENV PHP_JPEG_DIR="/usr" \
+    PHP_PNG_DIR="/usr" \
+    PHP_ZLIB_DIR="/usr" \
+    PHP_WEBP_DIR="/usr"
 
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
+    && if [ -z "$(echo "$PHP_EXTS" |sed "/ gd /d")" ]; then docker-php-ext-configure gd \
+        --with-freetype-dir=/usr \
+        --with-xpm-dir=/usr \
+        --enable-gd-native-ttf \
+        --enable-gd-jis-conv ; fi \
     && docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) $PHP_EXTS \
     && docker-php-ext-enable --ini-name 05-opcache.ini opcache \
     && pecl channel-update pecl.php.net \

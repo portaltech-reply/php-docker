@@ -106,10 +106,10 @@ do
 
         echo "FROM php:${php_versions[$version]}" > $file
         echo "MAINTAINER Linus Lotz<l.lotz@reply.de>" >> $file
-        echo "ENV RUN_DEPS=\"${run_deps}\"" >> $file
-        echo "ENV BUILD_DEPS=\"\${PHPIZE_DEPS} ${build_deps}\"" >> $file
-        echo "ENV PECL_EXTS=\"${pecl_extensions}\"" >> $file
-        echo "ENV PHP_EXTS=\"${php_extensions}\"" >> $file
+        echo "ENV RUN_DEPS=\"${run_deps}\" \\" >> $file
+        echo "    BUILD_DEPS=\"\${PHPIZE_DEPS} ${build_deps}\" \\" >> $file
+        echo "    PECL_EXTS=\"${pecl_extensions}\" \\" >> $file
+        echo "    PHP_EXTS=\"${php_extensions}\"" >> $file
         cat $DIR/Dockerfile.base >> $file
         cat > ${subdir}docker-php-update-conf <<EOS
 #!/bin/sh
