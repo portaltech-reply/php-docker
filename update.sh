@@ -1,5 +1,4 @@
 #!/bin/bash
-
 add_extension () {
     case $1 in
 
@@ -59,10 +58,10 @@ add_extension () {
             run_deps+="libmcrypt "
             build_deps+="libmcrypt-dev "
             ;;
-        sockets|pcntl|bcmath|soap|exif|iconv)
+        sockets|pcntl|bcmath|soap|exif|iconv|hash)
             php_extensions+="$1 "
             ;;
-        redis|apcu)
+        redis|apcu|mongodb)
             pecl_extensions+="$1 "
             ;;
         curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter) # already included in php-alpine
