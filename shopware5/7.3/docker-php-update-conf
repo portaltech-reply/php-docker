@@ -1,0 +1,2 @@
+#!/bin/sh
+cp -rT /usr/local/etc/php/conf-override.d/ /usr/local/etc/php/conf.d/ 
