@@ -10,3 +10,4 @@ mbstring
 openssl
 zip
 soap
+iconv
