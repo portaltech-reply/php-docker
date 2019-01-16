@@ -4,3 +4,4 @@ redis
 json
 hash
 mongodb
+curl
