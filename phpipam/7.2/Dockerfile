@@ -18,7 +18,7 @@ RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
-    && if [ ! -z "$(echo "$PHP_EXTS" |sed "/ gd /d")" ]; then docker-php-ext-configure gd \
+    && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then docker-php-ext-configure gd \
         --with-freetype-dir=/usr \
         --with-xpm-dir=/usr \
         --enable-gd-native-ttf \
