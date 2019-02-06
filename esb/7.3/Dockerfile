@@ -1,9 +1,9 @@
 FROM php:7.3-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash git icu-libs libintl libxml2 openssh-client" \
-    BUILD_DEPS="${PHPIZE_DEPS} icu-dev libxml2-dev" \
+    BUILD_DEPS="${PHPIZE_DEPS} icu-dev libxml2-dev zlib-dev" \
     PECL_EXTS="mongodb redis" \
-    PHP_EXTS="hash intl soap"
+    PHP_EXTS="hash intl soap zip"
 ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
