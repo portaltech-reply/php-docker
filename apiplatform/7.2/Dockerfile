@@ -1,7 +1,7 @@
 FROM php:7.2-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client" \
-    BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev zlib-dev" \
+ENV RUN_DEPS="bash git icu-libs libintl libzip mariadb-connector-c openssh-client" \
+    BUILD_DEPS="${PHPIZE_DEPS} icu-dev libzip-dev mariadb-connector-c-dev zlib-dev" \
     PECL_EXTS="apcu redis" \
     PHP_EXTS="intl mysqli pdo_mysql zip"
 ADD docker-php-update-conf /usr/local/bin/

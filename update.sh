@@ -51,7 +51,8 @@ add_extension () {
             ;;
         zip)
             php_extensions+="zip "
-            build_deps+="zlib-dev "
+            build_deps+="zlib-dev libzip-dev "
+            run_deps+="libzip "
             ;;
         mcrypt)
             php_extensions+="mcrypt "

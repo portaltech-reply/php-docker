@@ -1,7 +1,7 @@
 FROM php:7.2-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git libgd libjpeg-turbo libldap libpng libwebp libxml2 libxpm mariadb-connector-c openssh-client zlib" \
-    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
+ENV RUN_DEPS="bash freetype git libgd libjpeg-turbo libldap libpng libwebp libxml2 libxpm libzip mariadb-connector-c openssh-client zlib" \
+    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
     PECL_EXTS="redis" \
     PHP_EXTS="gd ldap mysqli pdo_mysql xml zip"
 ADD docker-php-update-conf /usr/local/bin/
