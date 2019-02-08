@@ -1,9 +1,9 @@
 FROM php:7.1-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs imagemagick imagemagick-libs libintl libmagic libxml2 libzip openssh-client" \
-    BUILD_DEPS="${PHPIZE_DEPS} icu-dev imagemagick-dev libxml2-dev libzip-dev zlib-dev" \
+ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libpng libwebp libxml2 libxpm libzip openssh-client zlib" \
+    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev zlib-dev" \
     PECL_EXTS="imagick mongodb redis" \
-    PHP_EXTS="hash intl soap zip"
+    PHP_EXTS="gd hash intl soap zip"
 ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
