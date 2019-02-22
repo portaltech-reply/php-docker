@@ -1,6 +1,6 @@
 FROM php:7.3-fpm-alpine3.8
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libpng libwebp libxml2 libxpm libzip openssh-client zlib" \
+ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libpng libwebp libxml2 libxpm libzip openssh-client su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev zlib-dev" \
     PECL_EXTS="imagick mongodb redis" \
     PHP_EXTS="gd hash intl soap zip"
