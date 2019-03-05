@@ -8,10 +8,10 @@ ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
-    PHP_WEBP_DIR="/usr"
+    PHP_WEBP_DIR="/usr" \
+    PHP_INI_SCAN_DIR="/usr/local/etc/php/conf.d/:/usr/local/etc/php/conf-override.d/" \
+    LD_PRELOAD="/usr/lib/preloadable_libiconv.so" # fixes iconv
 
-# fixes iconv 
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
 RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
 
 RUN    apk update \
@@ -29,9 +29,6 @@ RUN    apk update \
     && pecl install -o -f $PECL_EXTS \
     && docker-php-ext-enable $PECL_EXTS \
     && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-    && chmod +x /usr/local/bin/docker-php-update-conf \
-    && mkdir /usr/local/etc/php/conf-override.d/ \
-    && sed -i -e 's!exec "$@"!inotifyd docker-php-update-conf /usr/local/etc/php/conf-override.d/:cewDMymnd \&\nsleep 1\ndocker-php-update-conf\n\nexec "$@"!' /usr/local/bin/docker-php-entrypoint \
     && pecl clear-cache \
     && apk del .build-deps \
     # Clear
