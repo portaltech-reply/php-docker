@@ -4,7 +4,6 @@ ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libi
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev zlib-dev" \
     PECL_EXTS="apcu imagick redis" \
     PHP_EXTS="bcmath exif gd intl mcrypt mysqli pdo_mysql soap zip"
-ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \

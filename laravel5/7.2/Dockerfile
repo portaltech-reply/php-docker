@@ -4,7 +4,6 @@ ENV RUN_DEPS="bash freetype git libgd libjpeg-turbo libldap libpng libwebp libxm
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
     PECL_EXTS="redis" \
     PHP_EXTS="gd ldap mysqli pdo_mysql xml zip"
-ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \

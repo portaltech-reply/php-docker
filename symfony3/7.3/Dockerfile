@@ -4,7 +4,6 @@ ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postg
     BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev" \
     PECL_EXTS="redis" \
     PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql"
-ADD docker-php-update-conf /usr/local/bin/
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
