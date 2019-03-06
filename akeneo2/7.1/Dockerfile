@@ -10,7 +10,8 @@ ENV PHP_JPEG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
     PHP_WEBP_DIR="/usr" \
     PHP_INI_SCAN_DIR="/usr/local/etc/php/conf.d/:/usr/local/etc/php/conf-override.d/" \
-    LD_PRELOAD="/usr/lib/preloadable_libiconv.so" # fixes iconv
+    # fixes iconv
+    LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
 RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
 
