@@ -55,7 +55,7 @@ add_extension () {
             run_deps+="libzip "
             ;;
         mcrypt)
-            php_extensions+="mcrypt "
+            pecl_extensions+="mcrypt "
             run_deps+="libmcrypt "
             build_deps+="libmcrypt-dev "
             ;;
