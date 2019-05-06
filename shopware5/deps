@@ -11,3 +11,4 @@ openssl
 zip
 soap
 iconv
+apcu
