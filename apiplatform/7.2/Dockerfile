@@ -1,9 +1,9 @@
 FROM php:7.2-fpm-alpine3.9
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash git icu-libs libintl libzip mariadb-connector-c openssh-client su-exec" \
-    BUILD_DEPS="${PHPIZE_DEPS} icu-dev libzip-dev mariadb-connector-c-dev zlib-dev" \
+ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxpm libzip mariadb-connector-c openssh-client su-exec zlib" \
+    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev libzip-dev mariadb-connector-c-dev zlib-dev" \
     PECL_EXTS="apcu redis" \
-    PHP_EXTS="intl mysqli pdo_mysql zip"
+    PHP_EXTS="gd intl mysqli pdo_mysql zip"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
