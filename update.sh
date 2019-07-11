@@ -19,6 +19,11 @@ add_extension () {
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "
             ;;
+        xsl)
+            php_extensions+="xsl "
+            build_deps+="libxslt "
+            run_deps+="libxslt-dev "
+            ;;
         intl)
             php_extensions+="intl "
             build_deps+="icu-dev "
