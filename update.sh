@@ -64,7 +64,7 @@ add_extension () {
             run_deps+="libmcrypt "
             build_deps+="libmcrypt-dev "
             ;;
-        sockets|pcntl|bcmath|soap|exif|iconv|hash)
+        sockets|pcntl|bcmath|soap|exif|iconv|hash|pcntl)
             php_extensions+="$1 "
             ;;
         redis|apcu|mongodb)

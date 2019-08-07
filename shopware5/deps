@@ -12,3 +12,4 @@ zip
 soap
 iconv
 apcu
+pcntl
