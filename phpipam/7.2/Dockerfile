@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine3.9
+FROM php:7.2-fpm-alpine3.10
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash freetype gettext-libs git gmp libgd libjpeg-turbo libldap libpng libwebp libxml2 libxpm mariadb-connector-c openssh-client su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev gettext-dev gmp-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
