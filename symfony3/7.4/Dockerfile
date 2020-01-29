@@ -30,8 +30,11 @@ RUN    apk update \
             if [ "${PHP_VERSION%.*}" == "7.3" -o "${PHP_VERSION%.*}" == "7.2" ]; then \
                 docker-php-ext-configure gd \
                 --with-freetype-dir=/usr \
+                --with-jpeg-dir=/usr \
+                --with-webp-dir=/usr \
+                --with-zlib-dir=/usr \
+                --with-png-dir=/usr \
                 --with-xpm-dir=/usr \
-                --enable-gd-native-ttf \
                 --enable-gd-jis-conv \
             ; fi \
         ; fi \
