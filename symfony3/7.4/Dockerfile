@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-alpine3.10
+FROM php:7.3-fpm-alpine3.11
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs su-exec" \
     BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev" \
