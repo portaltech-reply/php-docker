@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine3.11
+FROM php:7.4-fpm-alpine3.11
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm libzip mariadb-connector-c openssh-client postgresql-libs su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev postgresql-dev zlib-dev" \
@@ -18,11 +18,23 @@ RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
-    && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then docker-php-ext-configure gd \
-        --with-freetype-dir=/usr \
-        --with-xpm-dir=/usr \
-        --enable-gd-native-ttf \
-        --enable-gd-jis-conv ; fi \
+    && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then \
+            if [ "${PHP_VERSION%.*}" == "7.4" ]; then \
+                docker-php-ext-configure gd --enable-gd \
+                --with-webp \
+                --with-jpeg \
+                --with-xpm \
+                --with-freetype \
+                --enable-gd-jis-conv \
+            ; fi && \
+            if [ "${PHP_VERSION%.*}" == "7.3" -o "${PHP_VERSION%.*}" == "7.2" ]; then \
+                docker-php-ext-configure gd \
+                --with-freetype-dir=/usr \
+                --with-xpm-dir=/usr \
+                --enable-gd-native-ttf \
+                --enable-gd-jis-conv \
+            ; fi \
+        ; fi \
     && docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) $PHP_EXTS \
     && docker-php-ext-enable --ini-name 05-opcache.ini opcache \
     && pecl channel-update pecl.php.net \
@@ -34,4 +46,4 @@ RUN    apk update \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
 
-COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
