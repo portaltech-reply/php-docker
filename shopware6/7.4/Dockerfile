@@ -1,9 +1,9 @@
-FROM php:7.2-fpm-alpine3.10
+FROM php:7.4-fpm-alpine3.11
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="bash freetype git libgd libjpeg-turbo libldap libpng libwebp libxpm libzip mariadb-connector-c openssh-client su-exec zlib" \
-    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev libzip-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
-    PECL_EXTS="redis" \
-    PHP_EXTS="gd ldap mysqli pdo_mysql zip"
+ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm libzip mariadb-connector-c openssh-client postgresql-libs su-exec zlib" \
+    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev postgresql-dev zlib-dev" \
+    PECL_EXTS="apcu igbinary redis" \
+    PHP_EXTS="gd intl mysqli pcntl pdo_mysql pdo_pgsql soap zip"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \

@@ -1,7 +1,10 @@
 apcu
+ctype
 curl
 gd
+hash
 iconv
+igbinary
 intl
 json
 mbstring
@@ -12,4 +15,5 @@ pcntl
 pgsql
 redis
 soap
+xml
 zip

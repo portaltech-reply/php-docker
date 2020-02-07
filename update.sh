@@ -14,7 +14,7 @@ add_extension () {
             build_deps+="postgresql-dev "
             run_deps+="postgresql-libs "
             ;;
-        xml|simplexml|soap)
+        soap)
             php_extensions+="$1 "
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "
@@ -64,13 +64,13 @@ add_extension () {
             run_deps+="libmcrypt "
             build_deps+="libmcrypt-dev "
             ;;
-        sockets|pcntl|bcmath|soap|exif|iconv|hash|pcntl)
+        sockets|pcntl|bcmath|soap|exif|pcntl)
             php_extensions+="$1 "
             ;;
-        redis|apcu|mongodb)
+        redis|apcu|mongodb|igbinary)
             pecl_extensions+="$1 "
             ;;
-        curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter) # already included in php-alpine
+        curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter|hash|xml|dom|simplexml|iconv) # already included in php-alpine
             ;;
         opcache) # in Dockerfile.base
             ;;
