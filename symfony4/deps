@@ -1,0 +1,5 @@
+intl
+opcache
+mysql
+pgsql
+redis
