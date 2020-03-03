@@ -3,3 +3,4 @@ opcache
 mysql
 pgsql
 redis
+gd
