@@ -64,10 +64,14 @@ add_extension () {
             run_deps+="libmcrypt "
             build_deps+="libmcrypt-dev "
             ;;
+        mongodb)
+            pecl_extensions+="mongodb "
+            build_deps+="curl-dev openssl-dev "
+            ;;
         sockets|pcntl|bcmath|soap|exif|pcntl)
             php_extensions+="$1 "
             ;;
-        redis|apcu|mongodb|igbinary)
+        redis|apcu|igbinary)
             pecl_extensions+="$1 "
             ;;
         curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype|crypt|filter|hash|xml|dom|simplexml|iconv) # already included in php-alpine
