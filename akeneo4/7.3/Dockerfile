@@ -3,7 +3,8 @@ MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libmcrypt libpng libwebp libxml2 libxpm libzip mariadb-connector-c openssh-client su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev zlib-dev" \
     PECL_EXTS="apcu imagick mcrypt redis" \
-    PHP_EXTS="bcmath exif gd intl mysqli pdo_mysql soap zip"
+    PHP_EXTS="bcmath exif gd intl mysqli pdo_mysql soap zip" \
+    ALPINE_VERSION="3.10"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
@@ -12,14 +13,14 @@ ENV PHP_JPEG_DIR="/usr" \
     # fixes iconv
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
-RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community gnu-libiconv
+RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v${ALPINE_VERSION}/community gnu-libiconv
 
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then \
-            if [ "${PHP_VERSION%.*}" == "7.4" ]; then \
+            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" ]; then \
                 docker-php-ext-configure gd --enable-gd \
                 --with-webp \
                 --with-jpeg \
