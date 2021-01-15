@@ -111,15 +111,18 @@ do
 
     for subdir in ${DIR}/${framework}/*/
     do
-        version=$(basename $subdir)
+        php_version=$(basename $subdir)
+        container_tag=${php_versions[$php_version]}
+        alpine_version=${container_tag#*alpine}
         file="${subdir}Dockerfile"
 
-        echo "FROM php:${php_versions[$version]}" > $file
+        echo "FROM php:${container_tag}" > $file
         echo "MAINTAINER Linus Lotz<l.lotz@reply.de>" >> $file
         echo "ENV RUN_DEPS=\"${run_deps}\" \\" >> $file
         echo "    BUILD_DEPS=\"\${PHPIZE_DEPS} ${build_deps}\" \\" >> $file
         echo "    PECL_EXTS=\"${pecl_extensions}\" \\" >> $file
-        echo "    PHP_EXTS=\"${php_extensions}\"" >> $file
+        echo "    PHP_EXTS=\"${php_extensions}\" \\" >> $file
+        echo "    ALPINE_VERSION=\"${alpine_version}\"" >> $file
         cat $DIR/Dockerfile.base >> $file
     done
 done
