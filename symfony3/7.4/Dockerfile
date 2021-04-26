@@ -1,10 +1,10 @@
-FROM php:7.4-fpm-alpine3.11
+FROM php:7.4-fpm-alpine3.13
 MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs su-exec" \
     BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev" \
     PECL_EXTS="redis" \
     PHP_EXTS="intl mysqli pdo_mysql pdo_pgsql" \
-    ALPINE_VERSION="3.11"
+    ALPINE_VERSION="3.13"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
