@@ -1,5 +1,6 @@
 FROM php:7.3-fpm-alpine3.13
-MAINTAINER Linus Lotz<l.lotz@reply.de>
+LABEL author='Linus Lotz<l.lotz@reply.de>'
+LABEL maintainer='Manuel Mayer<m.mayer@reply.de>'
 ENV RUN_DEPS="bash git icu-libs libintl mariadb-connector-c openssh-client postgresql-libs su-exec" \
     BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-connector-c-dev postgresql-dev" \
     PECL_EXTS="redis" \

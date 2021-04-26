@@ -120,7 +120,8 @@ do
         file="${subdir}Dockerfile"
 
         echo "FROM php:${container_tag}" > $file
-        echo "MAINTAINER Linus Lotz<l.lotz@reply.de>" >> $file
+        echo "LABEL author='Linus Lotz<l.lotz@reply.de>'" >> $file
+        echo "LABEL maintainer='Manuel Mayer<m.mayer@reply.de>'" >> $file
         echo "ENV RUN_DEPS=\"${run_deps}\" \\" >> $file
         echo "    BUILD_DEPS=\"\${PHPIZE_DEPS} ${build_deps}\" \\" >> $file
         echo "    PECL_EXTS=\"${pecl_extensions}\" \\" >> $file

@@ -1,5 +1,6 @@
 FROM php:7.3-fpm-alpine3.13
-MAINTAINER Linus Lotz<l.lotz@reply.de>
+LABEL author='Linus Lotz<l.lotz@reply.de>'
+LABEL maintainer='Manuel Mayer<m.mayer@reply.de>'
 ENV RUN_DEPS="bash freetype git icu-libs imagemagick imagemagick-libs libgd libintl libjpeg-turbo libmagic libpng libwebp libxml2 libxpm libzip openssh-client su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} curl-dev freetype-dev icu-dev imagemagick-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev openssl-dev zlib-dev" \
     PECL_EXTS="imagick mongodb redis" \
