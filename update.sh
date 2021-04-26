@@ -112,6 +112,7 @@ do
     build_deps=$(echo -e "${build_deps// /\\n}" | sort -u | grep -v '^$' | tr '\n' ' ' | sed -e 's/[[:space:]]*$//')
     run_deps=$(echo -e "${run_deps// /\\n}" | sort -u | grep -v '^$' | tr '\n' ' ' | sed -e 's/[[:space:]]*$//')
 
+    shopt -s nullglob
     for subdir in ${DIR}/${framework}/*/
     do
         php_version=$(basename $subdir)
