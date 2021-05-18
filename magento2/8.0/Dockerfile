@@ -51,4 +51,4 @@ RUN    apk update \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
 
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
