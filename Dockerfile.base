@@ -13,7 +13,7 @@ RUN    apk update \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then \
-            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" ]; then \
+            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" -o "${PHP_VERSION%.*}" == "8.1" ]; then \
                 docker-php-ext-configure gd --enable-gd \
                 --with-webp \
                 --with-jpeg \
