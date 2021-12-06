@@ -1,11 +1,11 @@
-FROM php:7.3-fpm-alpine3.13
+FROM php:8.1-fpm-alpine3.15
 LABEL author='Linus Lotz<l.lotz@reply.de>'
 LABEL maintainer='Manuel Mayer<m.mayer@reply.de>'
-ENV RUN_DEPS="bash freetype gettext-libs git gmp libgd libjpeg-turbo libldap libpng libwebp libxpm mariadb-connector-c openssh-client patch su-exec zlib" \
-    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev gettext-dev gmp-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-connector-c-dev openldap-dev zlib-dev" \
+ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxpm mariadb-connector-c openssh-client patch postgresql-libs su-exec zlib" \
+    BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxpm-dev mariadb-connector-c-dev postgresql-dev zlib-dev" \
     PECL_EXTS="redis" \
-    PHP_EXTS="gd gettext gmp ldap mysqli pcntl pdo_mysql sockets" \
-    ALPINE_VERSION="3.13"
+    PHP_EXTS="gd intl mysqli pdo_mysql pdo_pgsql" \
+    ALPINE_VERSION="3.15"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \

@@ -1,11 +1,11 @@
-FROM php:8.0-fpm-alpine3.13
+FROM php:8.0-fpm-alpine3.15
 LABEL author='Linus Lotz<l.lotz@reply.de>'
 LABEL maintainer='Manuel Mayer<m.mayer@reply.de>'
 ENV RUN_DEPS="bash freetype git icu-libs libgd libintl libjpeg-turbo libpng libwebp libxml2 libxpm libzip mariadb-connector-c openssh-client patch postgresql-libs su-exec zlib" \
     BUILD_DEPS="${PHPIZE_DEPS} freetype-dev icu-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev libzip-dev mariadb-connector-c-dev postgresql-dev zlib-dev" \
     PECL_EXTS="apcu igbinary redis" \
     PHP_EXTS="gd intl mysqli pcntl pdo_mysql pdo_pgsql soap zip" \
-    ALPINE_VERSION="3.13"
+    ALPINE_VERSION="3.15"
 ENV PHP_JPEG_DIR="/usr" \
     PHP_PNG_DIR="/usr" \
     PHP_ZLIB_DIR="/usr" \
@@ -21,7 +21,7 @@ RUN    apk update \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then \
-            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" ]; then \
+            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" -o "${PHP_VERSION%.*}" == "8.1" ]; then \
                 docker-php-ext-configure gd --enable-gd \
                 --with-webp \
                 --with-jpeg \
@@ -51,4 +51,5 @@ RUN    apk update \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
 
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer2

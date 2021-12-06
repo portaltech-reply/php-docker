@@ -21,7 +21,7 @@ RUN    apk update \
     && apk add --no-cache $RUN_DEPS \
     && apk add -t .build-deps $BUILD_DEPS \
     && if [ -z "$(echo "$PHP_EXTS" |sed '/^gd\| gd/d')" ]; then \
-            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" ]; then \
+            if [ "${PHP_VERSION%.*}" == "7.4" -o "${PHP_VERSION%.*}" == "8.0" -o "${PHP_VERSION%.*}" == "8.1" ]; then \
                 docker-php-ext-configure gd --enable-gd \
                 --with-webp \
                 --with-jpeg \
@@ -51,4 +51,5 @@ RUN    apk update \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
 
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer2
