@@ -9,7 +9,6 @@ mysql
 opcache
 openssl
 pcntl
-pgsql
 redis
 soap
 zip
